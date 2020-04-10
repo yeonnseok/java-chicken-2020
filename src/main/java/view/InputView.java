@@ -1,5 +1,6 @@
 package view;
 
+import domain.Payment;
 import domain.PosOption;
 
 import java.util.Scanner;
@@ -22,6 +23,11 @@ public class InputView {
         return inputIntegerValue();
     }
 
+    public static int inputPayTableNumber() {
+        OutputView.printInputPayTableNumberGuideMessage();
+        return inputIntegerValue();
+    }
+
     public static int inputMenuNumber() {
         OutputView.printInputMenuNumberGuideMessage();
         return inputIntegerValue();
@@ -37,6 +43,15 @@ public class InputView {
             return Integer.parseInt(SCANNER.nextLine());
         } catch (NumberFormatException e) {
             throw new NumberFormatException("숫자를 입력하세요.");
+        }
+    }
+
+    public static Payment inputPayment() {
+        try {
+            return Payment.findBy(inputIntegerValue());
+        } catch (IllegalArgumentException e) {
+            OutputView.printExceptionMessage(e.getMessage());
+            return inputPayment();
         }
     }
 }

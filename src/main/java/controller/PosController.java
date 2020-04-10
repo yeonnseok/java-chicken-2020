@@ -1,7 +1,7 @@
 package controller;
 
-import domain.Table;
+import domain.Tables;
 
 public interface PosController {
-    void run(final Table table);
+    void run(final Tables tables);
 }

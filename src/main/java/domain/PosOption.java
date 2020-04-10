@@ -31,7 +31,7 @@ public enum PosOption {
         return this != TERMINATE;
     }
 
-    public void run(final Table table) {
-        posController.run(table);
+    public void run(final Tables tables) {
+        posController.run(tables);
     }
 }

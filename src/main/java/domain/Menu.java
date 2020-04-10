@@ -17,8 +17,16 @@ public class Menu {
         return category == Category.CHICKEN;
     }
 
+    public String getName() {
+        return name;
+    }
+
     public int getNumber() {
         return number;
+    }
+
+    public int getPrice() {
+        return price;
     }
 
     public int getPriceBy(final Quantity quantity) {

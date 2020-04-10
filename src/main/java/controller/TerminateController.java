@@ -1,10 +1,9 @@
 package controller;
 
-import domain.Table;
+import domain.Tables;
 
 public class TerminateController implements PosController {
     @Override
-    public void run(final Table table) {
-
+    public void run(final Tables tables) {
     }
 }

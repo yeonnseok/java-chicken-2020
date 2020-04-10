@@ -8,11 +8,32 @@ public class OrderController implements PosController {
     private Menus menus = new Menus();
 
     @Override
-    public void run(final Table table) {
+    public void run(final Tables tables) {
+        Table table = findOrderingTableWithValidation(tables);
+
         OutputView.printMenus(menus.getMenus());
-        Menu menu = findByMenuWithValidation(menus);
+        Menu menu = findOrderingMenuWithValidation(menus);
+
         Quantity quantity = inputQuantityWithValidation();
         table.addOrder(menu, quantity);
+    }
+
+    private static Table findOrderingTableWithValidation(final Tables tables) {
+        try {
+            return tables.findBy(InputView.inputTableNumber());
+        } catch (IllegalArgumentException e) {
+            OutputView.printExceptionMessage(e.getMessage());
+            return findOrderingTableWithValidation(tables);
+        }
+    }
+
+    private Menu findOrderingMenuWithValidation(final Menus menus) {
+        try {
+            return menus.findBy(InputView.inputMenuNumber());
+        } catch (IllegalArgumentException e) {
+            OutputView.printExceptionMessage(e.getMessage());
+            return findOrderingMenuWithValidation(menus);
+        }
     }
 
     private Quantity inputQuantityWithValidation() {
@@ -21,15 +42,6 @@ public class OrderController implements PosController {
         } catch (IllegalArgumentException e) {
             OutputView.printExceptionMessage(e.getMessage());
             return inputQuantityWithValidation();
-        }
-    }
-
-    private Menu findByMenuWithValidation(final Menus menus) {
-        try {
-            return menus.findBy(InputView.inputMenuNumber());
-        } catch (IllegalArgumentException e) {
-            OutputView.printExceptionMessage(e.getMessage());
-            return findByMenuWithValidation(menus);
         }
     }
 

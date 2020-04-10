@@ -27,4 +27,8 @@ public class Orders {
                 .mapToInt(menu -> menu.getPriceBy(orders.get(menu)))
                 .sum();
     }
+
+    public Map<Menu, Quantity> getOrders() {
+        return orders;
+    }
 }
