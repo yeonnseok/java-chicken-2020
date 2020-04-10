@@ -19,6 +19,10 @@ public class Quantity {
         return new Quantity(quantity + value);
     }
 
+    public int getQuantity() {
+        return quantity;
+    }
+
     @Override
     public boolean equals(final Object o) {
         if (this == o) {
