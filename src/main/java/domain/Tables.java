@@ -19,4 +19,8 @@ public class Tables {
                 .findFirst()
                 .orElseThrow(() -> new IllegalArgumentException("존재하지 않는 테이블 입니다."));
     }
+
+    public List<Table> getTables() {
+        return tables;
+    }
 }

@@ -19,4 +19,8 @@ public class Menus {
                 .findFirst()
                 .orElseThrow(() -> new IllegalArgumentException("존재하지 않는 메뉴 입니다."));
     }
+
+    public List<Menu> getMenus() {
+        return menus;
+    }
 }

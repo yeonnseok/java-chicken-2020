@@ -1,21 +1,28 @@
-import domain.Menu;
-import domain.MenuRepository;
+import domain.PosOption;
 import domain.Table;
-import domain.TableRepository;
+import domain.Tables;
 import view.InputView;
 import view.OutputView;
 
-import java.util.List;
-
 public class Application {
-    // TODO 구현 진행
     public static void main(String[] args) {
-        final List<Table> tables = TableRepository.tables();
-        OutputView.printTables(tables);
+        Tables tables = new Tables();
+        PosOption posOption = InputView.inputPosOptionNumber();
 
-        final int tableNumber = InputView.inputTableNumber();
+        while (posOption.isNotTerminate()) {
+            OutputView.printTables(tables.getTables());
+            Table table = findByTableWithValidation(tables);
+            posOption.run(table);
+            posOption = InputView.inputPosOptionNumber();
+        }
+    }
 
-        final List<Menu> menus = MenuRepository.menus();
-        OutputView.printMenus(menus);
+    private static Table findByTableWithValidation(final Tables tables) {
+        try {
+            return tables.findBy(InputView.inputTableNumber());
+        } catch (IllegalArgumentException e) {
+            OutputView.printExceptionMessage(e.getMessage());
+            return findByTableWithValidation(tables);
+        }
     }
 }
