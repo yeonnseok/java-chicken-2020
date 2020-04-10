@@ -3,10 +3,15 @@ package domain;
 import java.util.Objects;
 
 public class Quantity {
-    public static final int MIN_QUANTITY = 1;
-    public static final int MAX_QUANTITY = 99;
+    private static final int MIN_QUANTITY = 1;
+    private static final int MAX_QUANTITY = 99;
+    private static final int DEFAULT_QUANTITY = 0;
 
     private final int quantity;
+
+    public Quantity() {
+        quantity = DEFAULT_QUANTITY;
+    }
 
     public Quantity(final int quantity) {
         if (quantity < MIN_QUANTITY | quantity > MAX_QUANTITY) {
@@ -15,8 +20,8 @@ public class Quantity {
         this.quantity = quantity;
     }
 
-    public Quantity addQuantity(final int value) {
-        return new Quantity(quantity + value);
+    public Quantity addQuantity(final Quantity quantity) {
+        return new Quantity(this.quantity + quantity.getQuantity());
     }
 
     public int getQuantity() {

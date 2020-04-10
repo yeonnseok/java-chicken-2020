@@ -26,7 +26,7 @@ public class QuantityTest {
     @CsvSource({"1,51", "2,52", "3,53", "4,54", "49,99"})
     void addQuantity(int value, int expectedQuantity) {
         Quantity quantity = new Quantity(50);
-        Quantity nextQuantity = quantity.addQuantity(value);
+        Quantity nextQuantity = quantity.addQuantity(new Quantity(value));
         assertThat(nextQuantity).isEqualTo(new Quantity(expectedQuantity));
     }
 
@@ -35,7 +35,7 @@ public class QuantityTest {
     void addQuantityFail() {
         Quantity quantity = new Quantity(50);
         assertThatThrownBy(() -> {
-            Quantity newQuantity = quantity.addQuantity(50);
+            Quantity newQuantity = quantity.addQuantity(new Quantity(50));
         }).isInstanceOf(IllegalArgumentException.class)
                 .hasMessage("메뉴당 최소 1개, 최대 99개까지 주문 가능 합니다.");
     }
