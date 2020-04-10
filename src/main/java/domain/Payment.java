@@ -3,8 +3,16 @@ package domain;
 import java.util.Arrays;
 
 public enum Payment {
-    CARD(1, 0),
-    CASH(2, 0.05);
+    CARD(1, 0){
+        public double calculateFinalTotalPrice(final int totalPrice) {
+            return totalPrice - totalPrice * CARD.discountRatio;
+        }
+    },
+    CASH(2, 0.05) {
+        public double calculateFinalTotalPrice(final int totalPrice) {
+            return totalPrice - totalPrice * CASH.discountRatio;
+        }
+    };
 
     private final int number;
     private final double discountRatio;
@@ -20,5 +28,7 @@ public enum Payment {
                 .findFirst()
                 .orElseThrow(() -> new IllegalArgumentException("선택할 수 없는 결제 수단입니다."));
     }
+
+    public abstract double calculateFinalTotalPrice(final int totalPrice);
 }
 

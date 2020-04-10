@@ -21,4 +21,10 @@ public class Orders {
                 .mapToInt(Quantity::getQuantity)
                 .sum();
     }
+
+    public int calculateTotalPrice() {
+        return orders.keySet().stream()
+                .mapToInt(menu -> menu.getPriceBy(orders.get(menu)))
+                .sum();
+    }
 }
