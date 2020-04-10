@@ -13,16 +13,20 @@ public class Menu {
         this.price = price;
     }
 
+    public boolean isChickenCategory() {
+        return category == Category.CHICKEN;
+    }
+
     public int getNumber() {
         return number;
+    }
+
+    public int getPriceBy(final Quantity quantity) {
+        return price * quantity.getQuantity();
     }
 
     @Override
     public String toString() {
         return category + " " + number + " - " + name + " : " + price + "원";
-    }
-
-    public int getPriceBy(final Quantity quantity) {
-        return price * quantity.getQuantity();
     }
 }

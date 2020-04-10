@@ -12,4 +12,8 @@ public class Order {
     public int calculateOrderPrice() {
         return menu.getPriceBy(quantity);
     }
+
+    public boolean isChickenCategory() {
+        return menu.isChickenCategory();
+    }
 }
