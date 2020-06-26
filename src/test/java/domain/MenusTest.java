@@ -20,7 +20,7 @@ public class MenusTest {
     @DisplayName("메뉴 생성")
     @Test
     void constructor() {
-        assertThat(menus.size()).isEqualTo(8);
+        assertThat(menus.getMenus()).hasSize(8);
     }
 
     @DisplayName("목록에 없는 메뉴 번호 입력 시 예외 발생")

@@ -31,7 +31,19 @@ public class TablesTest {
             Table table = tables.findBy(number);
         }).isInstanceOf(IllegalArgumentException.class)
                 .hasMessage("존재하지 않는 테이블 입니다.");
+    }
 
+    @DisplayName("테이블 번호로 테이블 찾기")
+    @Test
+    void findTable() {
+        Tables tables = new Tables();
+        tables.getTables().get(1).addOrder(
+                new Menu(3, "후라이드 치킨", Category.CHICKEN, 21000),
+                new Quantity(14)
+        );
+        final Table payTable = tables.findPayTableBy(2);
+        assertThat(tables.getTables()).isNotNull();
+        assertThat(payTable.getNumber()).isEqualTo(2);
     }
 }
 

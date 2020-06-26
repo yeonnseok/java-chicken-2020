@@ -23,4 +23,23 @@ public class TableTest {
         table.addOrder(menu, new Quantity(14));
         assertThat(table.isOrdering()).isTrue();
     }
+
+    @DisplayName("주문 초기화")
+    @Test
+    void clearOrder() {
+        table.addOrder(menu, new Quantity(14));
+        assertThat(table.getOrders().getOrders()).hasSize(1);
+
+        table.clear();
+        assertThat(table.getOrders().getOrders()).hasSize(0);
+    }
+
+    @DisplayName("번호로 테이블 식별")
+    @Test
+    void equals() {
+        Table table1 = new Table(5);
+        Table table2 = new Table(5);
+        assertThat(table1.equals(table2)).isTrue();
+    }
+
 }

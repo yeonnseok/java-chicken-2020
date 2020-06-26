@@ -9,10 +9,6 @@ public class Menus {
         menus = MenuRepository.menus();
     }
 
-    public int size() {
-        return menus.size();
-    }
-
     public Menu findBy(final int number) {
         return menus.stream()
                 .filter(menu -> menu.getNumber() == number)
